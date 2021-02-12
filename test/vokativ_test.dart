@@ -3,7 +3,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:vokativ/vokativ.dart';
 
 void main() {
-  test('_', () {
-
+  group('Vokativ', () {
+    test('Should work', () {
+      expect(vokativ('Tom'), 'Tome');
+    });
   });
 }

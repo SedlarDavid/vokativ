@@ -1,68 +1,70 @@
 library vokativ;
 
-import 'package:vokativ/data/man_suffixes.dart';
-import 'package:vokativ/data/man_vs_woman_suffixes.dart';
-import 'package:vokativ/data/woman_first_vs_last_name_suffixes.dart';
+part 'vokativ_data.dart';
 
-class Vokativ {
-  static List<String> _getMatchingSuffix(name, Map<String, String> suffixes) {
-    var search;
+extension _StringExtension on String {
+  String get capitalize => '${this[0].toUpperCase()}${substring(1)}';
+}
 
-    for (var start = name.length; start > 0; start--) {
-      search = name.substr(-start);
-      if (suffixes[search] == 'string') {
-        return [search, suffixes[search]];
-      }
-    }
+List<String> _getMatchingSuffix(String name, Map<String, String> suffixes) {
+  var search;
 
-    return ['', suffixes[''] ?? ''];
-  }
-
-  static String _vokativWomanFirstName(name) {
-    if (name.substr(-1, 1) == 'a') {
-      return name.substr(0, name.length - 1) + 'o';
-    } else {
-      return name;
+  for (var start = name.length; start > 0; start--) {
+    search = name.substring(name.length - start);
+    if (suffixes[search] == 'string') {
+      return [search, suffixes[search]];
     }
   }
 
-  static String _vokativWomanLastName(name) {
+  return ['', suffixes[''] ?? ''];
+}
+
+String _vokativWomanFirstName(String name) {
+  if (name.substring(-1, 1) == 'a') {
+    return name.substring(0, name.length - 1) + 'o';
+  } else {
     return name;
   }
+}
 
-  static String _vokativMan(name) {
-    var search, suffix = _getMatchingSuffix(name, manSuffixes);
-    var ret = name.substr(0, name.length - search.length);
-    // name = name[:-len(suffix)] if suffix else name
-    return '$ret$suffix';
+String _vokativWomanLastName(String name) {
+  return name;
+}
+
+String _vokativMan(String name) {
+  var search, suffix = _getMatchingSuffix(name, _manSuffixes);
+  var ret =
+      name.substring(0, name.length - (search == null ? 0 : search.length));
+// name = name[:-len(suffix)] if suffix else name
+  suffix.removeWhere((s) => (s == null || s.isEmpty));
+  return '$ret${suffix.first}'.capitalize;
+}
+
+bool isWoman(String nameString) {
+  final name = nameString.toLowerCase();
+  return _getMatchingSuffix(name, _manVsWomanSuffixes)[1] == 'w';
+}
+
+String vokativ(String nameString, {bool womanBool, bool lastName}) {
+  final name = nameString.toLowerCase();
+  var woman = womanBool;
+
+  if (woman != null) {
+    woman = isWoman(name);
   }
 
-  static bool isWoman(nameString) {
-    final name = nameString.toLowerCase();
-    return _getMatchingSuffix(name, manVsWomanSuffixes)[1] == 'w';
-  }
-
-  static String vokativ(nameString, {womanBool, lastName}) {
-    final name = nameString.toLowerCase();
-    var woman = womanBool;
-
-    if (woman == null) {
-      woman = isWoman(name);
+  if (woman != null && woman) {
+    if (lastName == null) {
+      lastName =
+          (_getMatchingSuffix(name, _wFirstVsLastNameSuffixes)[1] ?? 'l') ==
+              'l';
     }
-
-    if (woman) {
-      if (lastName == null) {
-        lastName =
-            (_getMatchingSuffix(name, wFirstVsLastNameSuffixes)[1] ?? 'l') ==
-                'l';
-      }
-      if (lastName) {
-        return _vokativWomanLastName(name);
-      } else {
-        return _vokativWomanFirstName(name);
-      }
+    if (lastName) {
+      return _vokativWomanLastName(name);
     } else {
-      return _vokativMan(name);
+      return _vokativWomanFirstName(name);
     }
+  } else {
+    return _vokativMan(name);
   }
 }
