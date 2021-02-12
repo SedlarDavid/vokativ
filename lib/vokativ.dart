@@ -31,13 +31,13 @@ String _vokativWomanLastName(String name) {
   return name;
 }
 
-String _vokativMan(String name) {
+String _vokativMan(String name, {bool capitalize = false}) {
   var search, suffix = _getMatchingSuffix(name, _manSuffixes);
   var ret =
       name.substring(0, name.length - (search == null ? 0 : search.length));
 // name = name[:-len(suffix)] if suffix else name
   suffix.removeWhere((s) => (s == null || s.isEmpty));
-  return '$ret${suffix.first}'.capitalize;
+  return capitalize ? '$ret${suffix.first}'.capitalize : '$ret${suffix.first}';
 }
 
 bool isWoman(String nameString) {
@@ -45,7 +45,8 @@ bool isWoman(String nameString) {
   return _getMatchingSuffix(name, _manVsWomanSuffixes)[1] == 'w';
 }
 
-String vokativ(String nameString, {bool womanBool, bool lastName}) {
+String vokativ(String nameString,
+    {bool womanBool, bool lastName, bool capitalize = false}) {
   final name = nameString.toLowerCase();
   var woman = womanBool;
 
@@ -59,12 +60,12 @@ String vokativ(String nameString, {bool womanBool, bool lastName}) {
           (_getMatchingSuffix(name, _wFirstVsLastNameSuffixes)[1] ?? 'l') ==
               'l';
     }
-    if (lastName) {
+    if (lastName != null && lastName) {
       return _vokativWomanLastName(name);
     } else {
       return _vokativWomanFirstName(name);
     }
   } else {
-    return _vokativMan(name);
+    return _vokativMan(name, capitalize: capitalize);
   }
 }
