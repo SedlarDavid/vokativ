@@ -1,14 +1,8 @@
-# vokativ
+Dart lang vokativ (CZ) port
+=======
 
-A new Flutter package project.
+> Tento repozitář je téměř přímou kopií [Vokativ pro JS](https://github.com/pragonauts/vokativ) a [Vokativ](https://github.com/Mimino666/vokativ) přepsanou do jazyka Dart.
+> Chtěl bych klukům poděkovat za jejich kód a skvělou práci.
 
-## Getting Started
-
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+> This repository is almost direct copy of [Vokativ pro JS](https://github.com/pragonauts/vokativ) and [Vokativ](https://github.com/Mimino666/vokativ) overwritten to Dart language.
+> I would like to thank these guys for awesome code and great work.
