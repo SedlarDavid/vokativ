@@ -1,45 +1,44 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:vokativ/vokativ.dart';
 
-import 'data/man_first_name_tests.dart';
-import 'data/man_last_name_tests.dart';
-import 'data/woman_first_name_tests.dart';
-import 'data/woman_last_name_tests.dart';
+part 'data/man_first_name_data.dart';
+
+part 'data/man_last_name_data.dart';
+
+part 'data/woman_first_name_data.dart';
+
+part 'data/woman_last_name_data.dart';
 
 void main() {
-  group('Vokativ', () {
+  group('Vokativ tests', () {
     test('Should work', () {
-      expect(
-          Vokativ.getVokativ(
-            'Tom',
-          ),
-          'Tome');
+      expect(Vokativ.getVokativ('Tom', capitalize: true), 'Tome');
     });
 
-    test('translates man first names', () {
-      for (var entry in manFirstNames.entries) {
+    test('Translates man first names', () {
+      for (var entry in _manFirstNames.entries) {
         expect(Vokativ.getVokativ(entry.key, capitalize: false), entry.value);
         expect(Vokativ.isWoman(entry.key), false);
       }
     });
-    test('translates man last names', () {
-      for (var entry in manLastNames.entries) {
+    test('Translates man last names', () {
+      for (var entry in _manLastNames.entries) {
         expect(Vokativ.getVokativ(entry.key, lastName: true, capitalize: false),
             entry.value);
         expect(Vokativ.isWoman(entry.key), false);
       }
     });
 
-    test('translates woman first names', () {
-      for (var entry in womanFirstNames.entries) {
+    test('Translates woman first names', () {
+      for (var entry in _womanFirstNames.entries) {
         expect(
             Vokativ.getVokativ(entry.key, womanBool: true, capitalize: false),
             entry.value);
         expect(Vokativ.isWoman(entry.key), true);
       }
     });
-    test('translates woman last names', () {
-      for (var entry in womanLastNames.entries) {
+    test('Translates woman last names', () {
+      for (var entry in _womanLastNames.entries) {
         expect(Vokativ.getVokativ(entry.key, lastName: true, capitalize: false),
             entry.value);
         expect(Vokativ.isWoman(entry.key), true);

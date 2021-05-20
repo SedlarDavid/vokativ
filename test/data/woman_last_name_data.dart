@@ -1,4 +1,5 @@
-final womanLastNames = <String, String>{
+part of '../vokativ_test.dart';
+final _womanLastNames = <String, String>{
   "nováková": "nováková",
   "svobodová": "svobodová",
   "novotná": "novotná",
