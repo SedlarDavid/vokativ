@@ -1,3 +1,3 @@
-## [0.0.1] - TODO: Add release date.
+## [1.0.0] - 2021-05-20
 
-* TODO: Describe initial release.
+* Initial version of Vokativ dart package
