@@ -1,6 +1,6 @@
 name: vokativ
 description: A vokativ library for Dart language.
-version: 1.0.0
+version: 1.0.1
 repository: https://github.com/SedlarDavid/vokativda
 
 environment:

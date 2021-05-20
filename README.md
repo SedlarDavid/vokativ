@@ -7,6 +7,8 @@ Forks or PR for different languages are very welcomed!
 
 ## Usage
 
+Getting name vokatives
+
 ```dart
 import 'package:vokativ/vokativ.dart';
 
@@ -19,6 +21,23 @@ void main() {
 
   print(firstNameVokativ); // 'Davide'
   print(secondNameVokativ); // 'Jiří'
+}
+```
+
+Detection of gender based on name
+
+```dart
+import 'package:vokativ/vokativ.dart';
+
+void main() {
+  var firstName = 'David';
+  var secondName = 'Alena';
+
+  var firstNameGender = Vokativ.isWoman(firstName);
+  var secondNameGender = Vokativ.isWoman(secondName);
+
+  print(firstNameGender); // 'false'
+  print(secondNameGender); // 'true'
 }
 ```
 
