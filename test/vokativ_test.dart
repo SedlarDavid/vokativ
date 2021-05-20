@@ -10,7 +10,7 @@ void main() {
   group('Vokativ', () {
     test('Should work', () {
       expect(
-          vokativ(
+          Vokativ.getVokativ(
             'Tom',
           ),
           'Tome');
@@ -18,30 +18,31 @@ void main() {
 
     test('translates man first names', () {
       for (var entry in manFirstNames.entries) {
-        expect(vokativ(entry.key, capitalize: false), entry.value);
-        expect(isWoman(entry.key), false);
+        expect(Vokativ.getVokativ(entry.key, capitalize: false), entry.value);
+        expect(Vokativ.isWoman(entry.key), false);
       }
     });
     test('translates man last names', () {
       for (var entry in manLastNames.entries) {
-        expect(
-            vokativ(entry.key, lastName: true, capitalize: false), entry.value);
-        expect(isWoman(entry.key), false);
+        expect(Vokativ.getVokativ(entry.key, lastName: true, capitalize: false),
+            entry.value);
+        expect(Vokativ.isWoman(entry.key), false);
       }
     });
 
     test('translates woman first names', () {
       for (var entry in womanFirstNames.entries) {
-        expect(vokativ(entry.key, womanBool: true, capitalize: false),
+        expect(
+            Vokativ.getVokativ(entry.key, womanBool: true, capitalize: false),
             entry.value);
-        expect(isWoman(entry.key), true);
+        expect(Vokativ.isWoman(entry.key), true);
       }
     });
     test('translates woman last names', () {
       for (var entry in womanLastNames.entries) {
-        expect(
-            vokativ(entry.key, lastName: true, capitalize: false), entry.value);
-        expect(isWoman(entry.key), true);
+        expect(Vokativ.getVokativ(entry.key, lastName: true, capitalize: false),
+            entry.value);
+        expect(Vokativ.isWoman(entry.key), true);
       }
     });
   });
