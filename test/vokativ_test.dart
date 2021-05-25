@@ -1,4 +1,4 @@
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 import 'package:vokativ/vokativ.dart';
 
 part 'data/man_first_name_data.dart';

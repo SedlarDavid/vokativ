@@ -1,3 +1,7 @@
+## [1.0.2] - 2021-05-25
+
+* Flutter dependency removed, repository URL fixed
+
 ## [1.0.1] - 2021-05-20
 
 * Updated License file, gender detection in readme
