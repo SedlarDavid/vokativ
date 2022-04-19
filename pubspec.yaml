@@ -1,6 +1,6 @@
 name: vokativ
-description: A vokativ library for Dart language.
-version: 1.0.2
+description: A vokativ library for Dart language. Can take (fe)male Czech name and return its declension. Can also determine gender based on czech name.
+version: 1.0.3
 repository: https://github.com/SedlarDavid/vokativ
 
 environment:
